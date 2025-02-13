@@ -1,26 +1,15 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import Navbar from '@/Components/Navbar';
+import Footer from '@/Components/Footer';
 
-export default function Dashboard() {
+export default function Dashboard({ auth }) {
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Dashboard
-                </h2>
-            }
-        >
-            <Head title="Dashboard" />
-
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            You're logged in!
-                        </div>
-                    </div>
-                </div>
+        <div>
+            <Navbar auth={auth} />
+            <div className="text-center py-20">
+                <h1 className="text-3xl font-bold">Welcome, {auth.user.name}!</h1>
+                <p className="mt-4 text-gray-600">Manage your uploaded photos and AI-generated captions.</p>
             </div>
-        </AuthenticatedLayout>
+            <Footer />
+        </div>
     );
 }
