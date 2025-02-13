@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useForm } from "@inertiajs/react";
 
 // isOpen: Controls whether the modal is visible.
 // onClose: Function that closes the modal when the user clicks "Close".
@@ -20,7 +19,7 @@ export default function UploadModal({ isOpen, onClose }) {
     const [image, setImage] = useState(null);
     const [caption, setCaption] = useState("");
     const [loading, setLoading] = useState(false);
-    const { post, processing } = useForm();
+    const [processing, setProcessing] = useState(false);
     // you can use only post or only processing if you want.
     // data, setData, processing, errors, reset
 
@@ -59,10 +58,34 @@ export default function UploadModal({ isOpen, onClose }) {
         }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // post() handles form submissions with Inertia.js including handling CSRF.
-        post("/upload", { image, caption }); 
+    const handleSubmit = async() => {
+        if (processing) return;
+        if (!image) return alert("Upload an Image and Generate an AI-powered Caption.");
+        if (!caption) {
+            const confirmUpload = confirm("⚠️ Are you sure you want to upload without a caption?");
+            if (!confirmUpload) return;
+        }
+
+        setProcessing(true);
+        
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: JSON.stringify({ image, caption }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (!response.ok) throw new Error('Upload failed');
+
+            setImage(null);
+            setCaption("");
+            alert("✅ Upload successful!");
+        } catch (error) {
+            console.error(error);
+            alert("❌ Upload failed. Please try again.");
+        } finally {
+            setProcessing(false);
+        }
     }
 
     return (
@@ -79,7 +102,7 @@ export default function UploadModal({ isOpen, onClose }) {
                     <input type="file" onChange={handleImageChange} accept="image/*" />
 
                     <button onClick={generateCaption} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">
-                        {loading ? "Generating Caption..." : "AI Caption Generated"}
+                        {loading ? "Generating Caption..." : caption ? "AI Caption Generated" : "Generate Caption"}
                     </button>
 
                     <textarea
@@ -96,9 +119,10 @@ export default function UploadModal({ isOpen, onClose }) {
                     <button
                         onClick={handleSubmit}
                         disabled={processing}
-                        className="mt-4 bg-green-500 text-white px-4 py-2 rounded-md"
+                        className={`mt-4 text-white px-4 py-2 rounded-md 
+                            ${processing ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 hover:bg-green-600"}`}
                     >
-                        Posting
+                        {processing ? "Uploading..." : "Upload Post"}
                     </button>
 
                     <button onClick={onClose} className="mt-4 text-gray-500">

@@ -15,7 +15,10 @@ class UploadController extends Controller
 
         $path = $request->file('image')->store('uploads', 'public');
 
-        return response()->json(['message' => 'Uploaded Successfully!', 'path' => $path]);
+        return response()->json([
+            'message' => 'Uploaded Successfully!',
+            'path' => $path,
+        ]);
     }   
 
     public function generateCaption(Request $request)
