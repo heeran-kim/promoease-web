@@ -1,6 +1,8 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
-export default function Navbar({ auth }) {
+export default function Navbar() {
+    const { auth } = usePage().props;
+    
     return (
         <nav className="bg-white shadow-md p-4 flex justify-between items-center">
             <div className="text-xl font-bold">

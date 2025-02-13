@@ -5,8 +5,8 @@ import { Link } from '@inertiajs/react';
 export default function Home() {
     return (
         <div>
-            <Navbar auth={false} />
-            
+            <Navbar />
+
             <header className="bg-gray-100 text-center py-20">
                 <h1 className="text-4xl font-bold">Effortless Social Media Marketing</h1>
                 <p className="mt-4 text-gray-600">
