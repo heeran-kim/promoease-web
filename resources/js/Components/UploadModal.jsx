@@ -53,10 +53,15 @@ export default function UploadModal({ isOpen, onClose }) {
                 body: formData,
             });
 
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Failed to generate caption.");
+            }
+
             const data = await response.json();
-            setCaption(data.caption || "AI caption is cannot be generated.");
+            setCaption(data.caption || "⚠️ No caption generated. Try again!");
         } catch (error) {
-            console.error("Fail to generate caption:", error);
+            alert(`❌ Error: ${error.message}`);
         } finally {
             setLoading(false); // Runs whether an error occurred or not
         }
