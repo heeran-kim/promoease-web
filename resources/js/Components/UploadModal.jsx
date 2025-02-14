@@ -17,6 +17,7 @@ export default function UploadModal({ isOpen, onClose }) {
     // let is valid within block {} only. var isvalid within function.
     // const, on the other hand, cannot be reassigned.
     const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
     const [caption, setCaption] = useState("");
     const [loading, setLoading] = useState(false);
     const [processing, setProcessing] = useState(false);
@@ -26,6 +27,9 @@ export default function UploadModal({ isOpen, onClose }) {
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         setImage(file); // React automatically re-renders any UI that uses 'image'
+
+        const previewUrl = URL.createObjectURL(file);
+        setImagePreview(previewUrl);
     }
 
     // JavaScript is asynchronous and non-blocking all other UI actions
@@ -98,6 +102,10 @@ export default function UploadModal({ isOpen, onClose }) {
                  */}
                 <div className="bg-white p-6 rounded-lg w-96">
                     <h2 className="text-lg font-bold mb-4">Upload New Post</h2>
+
+                    {imagePreview && (
+                        <img src={imagePreview} alt="Preview" className="w-full h-40 object-cover rounded-md mb-4" />
+                    )}
 
                     <input type="file" onChange={handleImageChange} accept="image/*" />
 
