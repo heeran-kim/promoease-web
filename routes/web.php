@@ -13,6 +13,9 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/dashboard', function () {
             return Inertia::render('Dashboard');
         })->name('dashboard');
+    Route::get('/upload', [UploadController::class, 'index']);
+    Route::post('/upload', [UploadController::class, 'store']);
+    Route::post('/publish', [UploadController::class, 'publishToSocialMedia']);
 });
 
 Route::middleware('auth')->group(function () {

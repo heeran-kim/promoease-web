@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\ValidationException;
 
 class UploadController extends Controller
-{
+{   
     public function store(Request $request)
     {
         Log::info("🔥 store() called!");
@@ -21,10 +25,18 @@ class UploadController extends Controller
             Log::info("✅ Validation passed!");
 
             $path = $request->file('image')->store('uploads', 'public');
+            Log::info("📂 File stored at: " . $path);
+
+            $upload = Upload::create([
+                'user_id' => Auth::id(),
+                'image_path' => $path,
+            ]);
+
+            Log::info("✅ Upload saved to database!", ['upload_id' => $upload->id, 'image_path' => $upload->image_path]);
 
             return response()->json([
-                'message' => 'Uploaded Successfully!',
-                'path' => $path,
+                'message' => 'Image uploaded successfully!',
+                'upload_id' => $upload->id,
             ]);
         } catch (ValidationException $e) {
             Log::error("❌ Validation Error:", $e->errors());
@@ -42,15 +54,46 @@ class UploadController extends Controller
 
         try{
             $validated = $request->validate([
-                'image_path' => 'required|string',
+                'upload_id' => 'required|exists:uploads,id',
                 'captions' => 'required|array',
                 'platforms' => 'required|array',
             ]);
 
             Log::info("✅ Validation passed!");
 
+            $upload = Upload::find($validated['upload_id']);
+            if (!$upload) {
+                return response()->json(['error' => 'Image not found in uploads.'], 404);
+            }
+
+            $posts = [];
             foreach ($validated['platforms'] as $platform) {
-                Log::info("Posting to $platform: " . $validated['captions'][$platform]);
+                if (!isset($validated['captions'][$platform])) {
+                    return response()->json(['error' => "Caption is required for $platform."], 422);
+                }
+                $caption = $validated['captions'][$platform];
+
+                $post = Post::create([
+                    'upload_id' => $upload->id,
+                    'platform_name' => $platform,
+                    'caption' => $caption,
+                    'status' => 'pending',
+                ]);
+
+                // $apiResponse = Http::post("https://api.$platform.com/post", [
+                //     'image_url' => asset("storage/" . $upload->image_path),
+                //     'caption' => $caption,
+                // ]);
+    
+                // if ($apiResponse->successful()) {
+                    Log::info("✅ Successfully posted to $platform: " . $caption);
+                    $post->update(['status' => 'posted']);
+                // } else {
+                //     Log::error("❌ Failed to post to $platform: " . $caption);
+                //     $post->update(['status' => 'failed']);
+                // }
+    
+                $posts[] = $post;
             }
 
             return response()->json(['message' => 'Posted successfully!']);

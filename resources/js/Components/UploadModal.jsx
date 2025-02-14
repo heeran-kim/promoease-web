@@ -118,8 +118,11 @@ export default function UploadModal({ isOpen, onClose }) {
             const formData = new FormData();
             formData.append("image", image);
 
-            const uploadResponse = await fetch('/api/upload', {
+            const uploadResponse = await fetch('/upload', {
                 method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                },
                 body: formData,
             });
 
@@ -130,14 +133,17 @@ export default function UploadModal({ isOpen, onClose }) {
             
             const uploadData = await uploadResponse.json();
 
-            const publishResponse = await fetch('/api/publish', {
+            const publishResponse = await fetch('/publish', {
                 method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({
-                    image_path: uploadData.path,
+                    upload_id: uploadData.upload_id,
                     captions,
                     platforms: selectedPlatforms,
                 }),
-                headers: { 'Content-Type': 'application/json' },
             });
 
             if (!publishResponse.ok){
@@ -146,6 +152,7 @@ export default function UploadModal({ isOpen, onClose }) {
             }
     
             alert("✅ Upload successful!");
+            handleClose();
         } catch (error) {
             console.error(error);
             alert(`❌ Error: ${error.message}`);

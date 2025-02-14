@@ -1,7 +1,8 @@
 import { Link, usePage } from '@inertiajs/react';
 
-export default function Navbar() {
-    const { auth } = usePage().props;
+export default function Navbar({ setIsModalOpen }) {
+    const { props } = usePage();
+    const auth = props.auth || { user: null }; // ✅ Prevent errors if auth is missing
     
     return (
         <nav className="bg-white shadow-md p-4 flex justify-between items-center">
@@ -9,12 +10,25 @@ export default function Navbar() {
                 <Link href="/">PromoEase</Link>
             </div>
             
-            <div className="space-x-4">
+            <div className="space-x-4 flex items-center">
                 {auth.user ? (
-                    <Link href={route('dashboard')} className="text-gray-700 hover:text-gray-900">
-                        Dashboard
-                    </Link>
+                    <>
+                        {/* ✅ Show "New Posting" button ONLY if on Dashboard */}
+                        {route().current('dashboard') && (
+                            <button onClick={() => setIsModalOpen(true)} className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white">
+                                + New Posting
+                            </button>
+                        )}
 
+                        <Link href={route('dashboard')} className="text-gray-700 hover:text-gray-900">
+                            Dashboard
+                        </Link>
+
+                        {/* TODO */}
+                        <Link href={route('dashboard')} className="hover:underline text-gray-700">
+                            Account
+                        </Link>
+                    </>
                 ) : (
                     <>
                         <Link href={route('login')} className="text-gray-700 hover:text-gray-900">
