@@ -1,66 +1,129 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Promoease Web - Laravel Version (Deprecated)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+- 📌 ⚠️ This project is being migrated to a new repository and rewritten using Python-based backend technologies.
+- 📌 🛠 New Repository: [Promoease AI (Coming Soon)]
+- 📌 🔄 Why Migration?
+  - The initial development was done using **Laravel (PHP)**, but we are transitioning to **Python** for better AI integration.
+  - Future versions will use **FastAPI** for AI API development and **Django** for backend management.
+  - Machine learning models for promotion suggestions require a more AI-friendly stack, making Python a better choice.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Project Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Promoease Web is a Laravel-based platform designed to help restaurant owners efficiently create and manage social media posts with AI-generated captions. The system allows users to upload images, generate AI-powered captions, and publish posts across multiple social media platforms.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Preview
+| Landing Page - Get Started | Dashboard - Manage Your Posts | Upload New Post - AI Caption Generation |
+|-|-|-|
+| Intro screen with an option to start creating posts. | Shows a list of uploaded posts, their captions, and their posting status. | Users can upload an image, generate AI-powered captions, and publish to multiple social platforms. |
+| ![Landing Page](./screenshots/landing.png) | ![Dashboard](./screenshots/dashboard.png) | ![Upload](./screenshots/upload.png) |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Details
+1️⃣ **Image Upload & Storage**
+- Users can upload images to the platform.
+- Uploaded images are stored securely in the Laravel storage system.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2️⃣ **AI-Generated Captions *(Planned, Now Migrating)***
+- AI-powered captions for social media posts.
+- Captions automatically generated based on uploaded images.
+- Supports multiple social media platforms (Instagram, Facebook, Twitter, etc.).
 
-## Laravel Sponsors
+3️⃣ **Social Media Publishing *(Planned, Now Migrating)***
+- Users can publish AI-generated posts directly to their social media accounts.
+- The system supports multiple platform integrations.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4️⃣ **Post Management Dashboard**
+- A user-friendly dashboard to view, manage, and track published posts.
+- Users can see the status of each post (published, failed, pending).
 
-### Premium Partners
+5️⃣ **User Authentication & Security**
+- Secure user authentication system (Laravel Breeze).
+- Users can sign up, log in, and manage their accounts.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+## 📌 Tech Stack
+- **Backend**: Laravel 10 (PHP)
+- **Database**: MySQL
+- **Frontend**: Inertia.js + React, TailwindCSS
+- **Authentication**: Laravel Breeze
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 📌 Project Structure
+```text
+📂 promoease-web/
+ ┣ 📂 app/                # Laravel backend logic  
+ ┣ 📂 database/           # Migrations & seeders  
+ ┣ 📂 resources/          # Frontend (Inertia.js & React)  
+ ┣ 📂 routes/             # API & web routes (Laravel)  
+ ┣ 📂 storage/            # Uploaded images  
+ ┣ 📂 public/             # Public assets  
+ ┣ 📜 README.md           # Project documentation  
+ ┣ 📜 .env                # Environment variables  
+ ┗ 📜 composer.json       # Laravel dependencies  
+```
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📌 Installation & Setup
 
-## Security Vulnerabilities
+1️⃣ Clone the repository
+```bash
+git clone https://github.com/heeran-kim/promoease-web.git
+cd promoease-web
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2️⃣ Install dependencies
+```bash
+composer install
+npm install
+```
 
-## License
+3️⃣ Configure the environment
+	•	Copy the .env.example file and rename it to .env
+	•	Update database credentials (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
+	•	Run migrations to set up the database
+```bash
+php artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4️⃣ Run the application
+```bash
+php artisan serve  # Starts Laravel backend  
+npm run dev        # Starts frontend (React + Inertia.js)
+```
+---
+
+## 📌 Why Migrate from Laravel to Python?
+
+🔹 Limitations of Laravel for AI Integration
+1.	AI/ML Compatibility Issues
+  - Laravel is not optimized for AI/ML development, making complex AI features harder to implement.
+2.	Performance Considerations
+  - AI model serving requires asynchronous requests (Laravel is not optimal for this).
+3.	Scalability & Future Growth
+  - Python ecosystem (FastAPI, TensorFlow, PyTorch) is more suitable for AI/ML scalability.
+
+🚀 Advantages of Python-based Migration
+1.	FastAPI for AI API Development
+  - Optimized for real-time AI processing
+  - Supports asynchronous requests for high performance
+2.	Django for Backend Management
+  - Better for admin panel & database management
+3.	Scikit-learn / TensorFlow for AI Model Training
+  - Custom AI models can be trained & deployed directly
+
+---
+
+## 📌 License
+
+This project is licensed under the MIT License.
+
+---
+
+### 🚀 Promoease Web is now transitioning to a Python-based AI-powered platform! Stay tuned! 🎉
