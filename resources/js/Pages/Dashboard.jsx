@@ -84,7 +84,7 @@ export default function Dashboard() {
 
                             <span className="text-gray-700">Page {currentPage} of {lastPage}</span>
 
-                            <button 
+                            <button
                                 disabled={currentPage === lastPage} 
                                 onClick={() => fetchPosts(currentPage + 1)} 
                                 className={`px-4 py-2 rounded ${currentPage === lastPage ? 'bg-gray-300' : 'bg-blue-500 hover:bg-blue-600 text-white'}`}

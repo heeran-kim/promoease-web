@@ -66,11 +66,11 @@ class UploadController extends Controller
                 return response()->json(['error' => 'Image not found in uploads.'], 404);
             }
 
-            $posts = [];
+            // $posts = [];
             foreach ($validated['platforms'] as $platform) {
-                if (!isset($validated['captions'][$platform])) {
-                    return response()->json(['error' => "Caption is required for $platform."], 422);
-                }
+                // if (!isset($validated['captions'][$platform])) {
+                //     return response()->json(['error' => "Caption is required for $platform."], 422);
+                // }
                 $caption = $validated['captions'][$platform];
 
                 $post = Post::create([
@@ -93,7 +93,7 @@ class UploadController extends Controller
                 //     $post->update(['status' => 'failed']);
                 // }
     
-                $posts[] = $post;
+                // $posts[] = $post;
             }
 
             return response()->json(['message' => 'Posted successfully!']);

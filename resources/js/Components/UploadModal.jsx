@@ -29,8 +29,7 @@ export default function UploadModal({ isOpen, onClose }) {
     const [selectedPlatforms, setSelectedPlatforms] = useState([]);
     
     const [processing, setProcessing] = useState(false);
-    // you can use only post or only processing if you want.
-    // data, setData, processing, errors, reset
+
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -67,7 +66,7 @@ export default function UploadModal({ isOpen, onClose }) {
         try {
             const formData = new FormData();
             formData.append("image", image);
-            formData.append("selectedPlatforms", JSON.stringify(selectedPlatforms));
+            formData.append("selectedPlatforms", JSON.stringify(selectedPlatforms)); // TODO
 
             // await: Waits for an asynchronous operation to finish before moving on.
             // waits within the function only
@@ -164,7 +163,7 @@ export default function UploadModal({ isOpen, onClose }) {
     const handleClose = () => {
         setImage(null);
         setImagePreview(null);
-        setCaptions({});
+        setCaptions(Object.fromEntries(PLATFORMS.map(platform => [platform, ""])));
         setSelectedPlatforms([]);
         setLoading(false);
         setProcessing(false);

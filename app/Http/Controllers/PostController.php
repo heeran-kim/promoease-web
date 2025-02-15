@@ -12,5 +12,6 @@ class PostController extends Controller
         return response()->json(
             Post::with('upload')->latest()->paginate(6) // ✅ 6 posts per page
         );
+        // TODO: Auth info needed
     }
 }
