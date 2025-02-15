@@ -1,11 +1,9 @@
-# 🚀 Promoease Web - Laravel Version (Deprecated)
+# 🚀 Promoease Web
 
-- 📌 ⚠️ This project is being migrated to a new repository and rewritten using Python-based backend technologies.
-- 📌 🛠 New Repository: [Promoease AI (Coming Soon)]
-- 📌 🔄 Why Migration?
-  - The initial development was done using **Laravel (PHP)**, but we are transitioning to **Python** for better AI integration.
-  - Future versions will use **FastAPI** for AI API development and **Django** for backend management.
-  - Machine learning models for promotion suggestions require a more AI-friendly stack, making Python a better choice.
+## 🚨 [DEPRECATED] This project is being migrated!  
+This repository (`promoease-web`) is the initial Laravel-based version of Promoease.  
+We are migrating the project to **Python (FastAPI + Django)** for better AI integration.  
+👉 **New repository: [`promoease-ai`](https://github.com/heeran-kim/promoease-ai)**
 
 ---
 
@@ -101,7 +99,7 @@ npm run dev        # Starts frontend (React + Inertia.js)
 
 ## 📌 Why Migrate from Laravel to Python?
 
-🔹 Limitations of Laravel for AI Integration
+🔹 **Limitations of Laravel for AI Integration**
 1.	AI/ML Compatibility Issues
   - Laravel is not optimized for AI/ML development, making complex AI features harder to implement.
 2.	Performance Considerations
@@ -109,7 +107,7 @@ npm run dev        # Starts frontend (React + Inertia.js)
 3.	Scalability & Future Growth
   - Python ecosystem (FastAPI, TensorFlow, PyTorch) is more suitable for AI/ML scalability.
 
-🚀 Advantages of Python-based Migration
+🚀 **Advantages of Python-based Migration**
 1.	FastAPI for AI API Development
   - Optimized for real-time AI processing
   - Supports asynchronous requests for high performance
